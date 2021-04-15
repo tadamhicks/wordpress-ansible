@@ -7,4 +7,4 @@ mysql_users:
   - name: "{{ morpheus['customOptions']['mysqlAdminUsername'] }}" 
     host: "%"
     password: "{{ morpheus['customOptions']['mysqlAdminPw'] }}" 
-    priv: "{{ morpheus['customOptions']['mysql_db'] }}.*:ALL"
+    priv: "{{ morpheus['customOptions']['mysqlDbName'] }}.*:ALL"
