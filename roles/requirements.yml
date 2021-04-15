@@ -5,4 +5,4 @@
   name: php
 
 - src: https://github.com/geerlingguy/ansible-role-mysql
-  name: myysql
+  name: mysql
