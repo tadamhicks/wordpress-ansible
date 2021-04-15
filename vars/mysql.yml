@@ -1,0 +1,10 @@
+mysql_root_password: "{{ morpheus['customOptions']['mysql_root_password'] }}" 
+mysql_databases:
+  - name: "{{ morpheus['customOptions']['mysql_db'] }}" 
+    encoding: latin1
+    collation: latin1_general_ci
+mysql_users:
+  - name: "{{ morpheus['customOptions']['mysql_user'] }}" 
+    host: "%"
+    password: "{{ morpheus['customOptions']['mysql_password'] }}" 
+    priv: "{{ morpheus['customOptions']['mysql_db'] }}.*:ALL"

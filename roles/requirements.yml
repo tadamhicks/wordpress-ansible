@@ -1,0 +1,8 @@
+- src: https://github.com/geerlingguy/ansible-role-apache
+  name: apache
+
+- src: https://github.com/geerlingguy/ansible-role-php
+  name: php
+
+- src: https://github.com/geerlingguy/ansible-role-mysql
+  name: myysql
