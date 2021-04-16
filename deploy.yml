@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Find Service package
+      find: paths="/var/www/html" patterns="*.tar.gz"
+      register: find_result
+
+    - name: Unpack tarball
+      ansible.builtin.unarchive:
+        src: "{{ item.path }}"
+        dest: /var/www/html/
+        remote_src: yes
+      with_items: "{{ find_result.files }}"
