@@ -1,8 +1,6 @@
 mysql_root_password: "{{ morpheus['customOptions']['mysqlRootPw'] }}" 
 mysql_databases:
   - name: "{{ morpheus['customOptions']['mysqlDbName'] }}" 
-    encoding: latin1
-    collation: latin1_general_ci
 mysql_users:
   - name: "{{ morpheus['customOptions']['mysqlAdminUsername'] }}" 
     host: "%"

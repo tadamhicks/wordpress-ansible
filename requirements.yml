@@ -6,3 +6,6 @@
 
 - src: https://github.com/geerlingguy/ansible-role-mysql
   name: mysql
+
+- src: https://github.com/geerlingguy/ansible-role-php-mysql
+  name: php-mysql
