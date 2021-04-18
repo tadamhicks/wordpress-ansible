@@ -25,3 +25,9 @@
     - name: test
       debug:
         msg: "{{ mysql_user }}"
+
+    - name: WP-Config
+      replace:
+        path: /var/www/html/wordpress/wp-config-sample.php
+        regexp: 'username_here'
+        replace: "{{ mysql_user }}"
