@@ -23,6 +23,7 @@
           {{ container["customOptions"]["mysqlAdminUsername"] | trim }}
             {%- endif -%}
           {%- endfor -%}
+
     - name: test
       debug:
         msg: "{{ mysql_user }}"
@@ -31,4 +32,4 @@
       replace:
         path: "{{ wordpress_config_file }}"
         regexp: 'username_here'
-        replace: "{{ mysql_user }}"
+        replace: "{{ mysql_user | trim }}"
