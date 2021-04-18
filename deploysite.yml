@@ -15,11 +15,12 @@
 
     - name: set fact
       set_fact:
-        mysql_user: {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
-        {% if container["customOptions"] is defined %}
-          {{ container["customOptions"]["mysqlAdminUsername"] }}
-        {%  endif %}
-        {% endfor %}
+        mysql_user:  |
+          {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
+            {% if container["customOptions"] is defined %}
+              {{ container["customOptions"]["mysqlAdminUsername"] }}
+            {%  endif %}
+          {% endfor %}
 
     - name: test
       debug:
