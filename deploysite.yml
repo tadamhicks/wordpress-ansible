@@ -17,11 +17,11 @@
       set_fact:
         mysql_user:  |
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
-            {% if container["customOptions"] is defined and container["customOptions"].keys()|length > 0 %}
+            {% if container["customOptions"] is defined and container["customOptions"]|length  %}
               {% if container["customOptions"] is mapping %}
-                Dictionary green
+                Dictionary breen
               {% else %}
-                Not blue
+                Not glue
               {% endif %}
             {%  endif %}
           {% endfor %}
