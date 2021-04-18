@@ -63,3 +63,9 @@
         path: "{{ wordpress_config_file }}"
         regexp: 'database_name_here'
         replace: "{{ mysql_db  | replace('\n', '') }}"
+
+    - name: WP-Config-IP
+      replace:
+        path: "{{ wordpress_config_file }}"
+        regexp: 'localhost'
+        replace: "{{ lookup('env', 'MYSQL_IP') }}"
