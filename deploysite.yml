@@ -42,6 +42,15 @@
             {%- endif -%}
           {%- endfor -%}
 
+    - name: set fact mysql ip
+      set_fact:
+        mysql_ip:  |
+          {%- for container in morpheus["instance"]["apps"][0]["instances"] -%} 
+            {%- if container["customOptions"]["mysqlDbName"] is defined  -%}
+          {{- container["container"]["internalIp"] | trim -}}
+            {%- endif -%}
+          {%- endfor -%}
+
     - name: test
       debug:
         msg: "{{ mysql_user }}"
@@ -68,4 +77,4 @@
       replace:
         path: "{{ wordpress_config_file }}"
         regexp: 'localhost'
-        replace: "{{ ansible_env.MYSQL_IP }}"
+        replace: "{{ mysql_ip  | replace('\n', '') }}"
