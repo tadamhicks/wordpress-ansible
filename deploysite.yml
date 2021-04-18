@@ -1,6 +1,8 @@
 ---
 - hosts: all
   become: true
+  vars_files: 
+    - vars/deploysite.yml
   tasks:
     - name: Find Service package
       find: paths="/var/www/html" patterns="*.tar.gz"
@@ -9,7 +11,7 @@
     - name: Unpack tarball
       ansible.builtin.unarchive:
         src: "{{ item.path }}"
-        dest: /var/www/html/
+        dest: "{{ webroot }}"
         remote_src: yes
       with_items: "{{ find_result.files }}"
 
@@ -28,6 +30,6 @@
 
     - name: WP-Config
       replace:
-        path: /var/www/html/wordpress/wp-config-sample.php
+        path: "{{ wordpress_config_file }}"
         regexp: 'username_here'
         replace: "{{ mysql_user }}"
