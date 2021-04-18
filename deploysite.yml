@@ -18,7 +18,11 @@
         mysql_user:  |
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
             {% if container["customOptions"] is defined %}
-                {{ container["customOptions"].mysqlAdminUsername }}
+              {% if container["customOptions"].mysqlAdminUsername is dict %}
+                Dictionary
+              {% else %}
+                Not
+              {% endif %}
             {%  endif %}
           {% endfor %}
 
