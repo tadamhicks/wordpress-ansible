@@ -17,12 +17,8 @@
       set_fact:
         mysql_user:  |
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
-            {% if container["customOptions"] is defined and container["customOptions"]|length  %}
-              {% if container["customOptions"] is mapping %}
-                Dictionary breen
-              {% else %}
-                Not glue
-              {% endif %}
+            {% if container["customOptions"]["mysqlAdminUsername"] is defined  %}
+              {{ container["customOptions"]["mysqlAdminUsername"] }}
             {%  endif %}
           {% endfor %}
 
