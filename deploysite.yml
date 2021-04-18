@@ -19,9 +19,9 @@
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
             {% if container["customOptions"] is defined and container["customOptions"].keys()|length > 0 %}
               {% if container["customOptions"] is mapping %}
-                Dictionary
+                Dictionary green
               {% else %}
-                Not
+                Not blue
               {% endif %}
             {%  endif %}
           {% endfor %}
