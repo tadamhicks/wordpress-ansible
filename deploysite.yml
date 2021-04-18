@@ -5,7 +5,7 @@
     - vars/deploysite.yml
   tasks:
     - name: Find Service package
-      find: paths="/var/www/html" patterns="*.tar.gz"
+      find: paths="{{ webroot }}" patterns="*.tar.gz"
       register: find_result
 
     - name: Unpack tarball
