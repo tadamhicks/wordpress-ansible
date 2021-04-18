@@ -19,8 +19,6 @@
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
             {% if container["customOptions"] is defined %}
                 {{ container["customOptions"].mysqlAdminUsername }}
-            {% else %}
-                Blue
             {%  endif %}
           {% endfor %}
 
