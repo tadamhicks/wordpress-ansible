@@ -20,7 +20,7 @@
         mysql_user:  |
           {%- for container in morpheus["instance"]["apps"][0]["instances"] -%} 
             {%- if container["customOptions"]["mysqlAdminUsername"] is defined  -%}
-          {{ container["customOptions"]["mysqlAdminUsername"] | trim }}
+          {{- container["customOptions"]["mysqlAdminUsername"] | trim -}}
             {%- endif -%}
           {%- endfor -%}
 
@@ -32,4 +32,4 @@
       replace:
         path: "{{ wordpress_config_file }}"
         regexp: 'username_here'
-        replace: "{{ mysql_user | trim }}"
+        replace: "{{ mysql_user  }}"
