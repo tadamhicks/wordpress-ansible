@@ -23,7 +23,6 @@
           {{ container["customOptions"]["mysqlAdminUsername"] | trim }}
             {%- endif -%}
           {%- endfor -%}
-
     - name: test
       debug:
         msg: "{{ mysql_user }}"
