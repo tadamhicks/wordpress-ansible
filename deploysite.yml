@@ -18,7 +18,7 @@
         mysql_user:  |
           {% for container in morpheus["instance"]["apps"][0]["instances"] %} 
             {% if container["customOptions"] is defined %}
-                {{ container["customOptions"]["mysqlAdminUsername"] }}
+                {{ container["customOptions"] }}
             {% else %}
                 Blue
             {%  endif %}
@@ -26,4 +26,4 @@
 
     - name: test
       debug:
-        msg: mysql_user
+        msg: "{{ mysql_user }}"
