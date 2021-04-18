@@ -15,7 +15,7 @@
         remote_src: yes
       with_items: "{{ find_result.files }}"
 
-    - name: set fact
+    - name: set fact mysql user
       set_fact:
         mysql_user:  |
           {%- for container in morpheus["instance"]["apps"][0]["instances"] -%} 
@@ -24,12 +24,42 @@
             {%- endif -%}
           {%- endfor -%}
 
+    - name: set fact mysql password
+      set_fact:
+        mysql_pw:  |
+          {%- for container in morpheus["instance"]["apps"][0]["instances"] -%} 
+            {%- if container["customOptions"]["mysqlAdminPw"] is defined  -%}
+          {{- container["customOptions"]["mysqlAdminPw"] | trim -}}
+            {%- endif -%}
+          {%- endfor -%}
+
+    - name: set fact mysql db name
+      set_fact:
+        mysql_db:  |
+          {%- for container in morpheus["instance"]["apps"][0]["instances"] -%} 
+            {%- if container["customOptions"]["mysqlDbName"] is defined  -%}
+          {{- container["customOptions"]["mysqlDbName"] | trim -}}
+            {%- endif -%}
+          {%- endfor -%}
+
     - name: test
       debug:
         msg: "{{ mysql_user }}"
 
-    - name: WP-Config
+    - name: WP-Config-User
       replace:
         path: "{{ wordpress_config_file }}"
         regexp: 'username_here'
         replace: "{{ mysql_user  | replace('\n', '') }}"
+
+    - name: WP-Config-PW
+      replace:
+        path: "{{ wordpress_config_file }}"
+        regexp: 'password_here'
+        replace: "{{ mysql_pw  | replace('\n', '') }}"
+
+    - name: WP-Config-DB
+      replace:
+        path: "{{ wordpress_config_file }}"
+        regexp: 'database_name_here'
+        replace: "{{ mysql_db  | replace('\n', '') }}"
