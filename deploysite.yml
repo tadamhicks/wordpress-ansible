@@ -68,4 +68,4 @@
       replace:
         path: "{{ wordpress_config_file }}"
         regexp: 'localhost'
-        replace: "{{ lookup('env', 'MYSQL_IP') }}"
+        replace: "{{ ansible_env.MYSQL_IP }}"
