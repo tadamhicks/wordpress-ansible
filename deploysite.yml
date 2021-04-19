@@ -78,3 +78,10 @@
         path: "{{ wordpress_config_file }}"
         regexp: 'localhost'
         replace: "{{ mysql_ip  | replace('\n', '') }}"
+    
+    - name: WP-Config Promote
+      stat: path="{{ wordpress_config_file }}"
+      register: foo_stat
+    - name: Move foo to bar
+      command: mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+      when: foo_stat.stat.exists
