@@ -1,28 +1,5 @@
 ---
 - hosts: all
   become: true
-  tasks:
-    - name: Apache install
-      apt:
-        name: apache2
-        state: present
-
-    - name: PHP install
-      apt:
-        name: php
-        state: present
-
-    - name: php-mysql install
-      apt:
-        name: php-mysql
-        state: present
-
-    - name: libapache2-mod-php install
-      apt:
-        name: libapache2-mod-php
-        state: present
-    
-    - name: Restart apache
-      systemd:
-        name: apache2
-        state: restarted
+  roles:
+    - apache

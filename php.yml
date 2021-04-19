@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+  vars_files: 
+    - vars/php.yml
   roles:
     - php
-    - php-mysql
