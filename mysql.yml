@@ -3,5 +3,9 @@
   become: true
   vars_files: 
     - vars/mysql.yml
+  tasks:
+  - name: Pause for 2 minutes to build app cache
+    pause:
+      minutes: 2
   roles:
     - mysql
