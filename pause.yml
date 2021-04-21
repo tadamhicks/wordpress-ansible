@@ -1,6 +1,9 @@
 ---
 - hosts: all
   tasks:
+  - name: Echo ip
+    debug:
+      msg: "{{ morpheus['container']['externalIp'] }}"
   - name: Pause for 5 minutes to build app cache
     pause:
       minutes: 5
